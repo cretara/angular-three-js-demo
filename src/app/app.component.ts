@@ -29,9 +29,14 @@ export class AppComponent implements AfterViewInit {
    * Initialize ThreeJS
    */
   private initThreeJS(): void {
+    // Set canvas size to match the parent container
+    const canvas = this.canvasRef.nativeElement;
+    canvas.width = canvas.parentElement?.clientWidth ?? window.innerWidth;
+    canvas.height = canvas.parentElement?.clientHeight ?? window.innerHeight;
+
     // Renderer
-    this.renderer = new THREE.WebGLRenderer({canvas: this.canvasRef.nativeElement});
-    this.renderer.setSize(this.canvasRef.nativeElement.width, this.canvasRef.nativeElement.height);
+    this.renderer = new THREE.WebGLRenderer({canvas});
+    this.renderer.setSize(window.innerWidth, window.innerHeight)
 
     // Scene
     this.scene = new THREE.Scene();
@@ -52,9 +57,14 @@ export class AppComponent implements AfterViewInit {
    */
   private animate(): void {
     requestAnimationFrame(() => this.animate());
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.z += 0.01;
+    this.cube.rotation.x += 0.02;
+    this.cube.rotation.y += 0.02;
     this.renderer.render(this.scene, this.camera);
   }
 
+  handleResizeEvent() {
+    this.camera.aspect = window.innerWidth / window.innerHeight
+    this.camera.updateProjectionMatrix()
+    this.renderer.setSize(window.innerWidth, window.innerHeight)
+  }
 }
