@@ -46,8 +46,8 @@ export class AppComponent implements AfterViewInit {
     this.camera.position.z = 5;
 
     // Cube
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({color: 0xffffff});
+    const geometry = new THREE.BoxGeometry(1,1, 2);
+    const material = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
     this.cube = new THREE.Mesh(geometry, material);
     this.scene.add(this.cube);
   }
