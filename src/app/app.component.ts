@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import * as THREE from "three";
 
@@ -62,7 +62,8 @@ export class AppComponent implements AfterViewInit {
     this.renderer.render(this.scene, this.camera);
   }
 
-  handleResizeEvent() {
+  @HostListener('window:resize', ['$event'])
+  handleWindowResizeEvent() {
     this.camera.aspect = window.innerWidth / window.innerHeight
     this.camera.updateProjectionMatrix()
     this.renderer.setSize(window.innerWidth, window.innerHeight)
