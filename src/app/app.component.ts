@@ -25,10 +25,13 @@ export class AppComponent implements AfterViewInit {
     this.animate();
   }
 
+  /**
+   * Initialize ThreeJS
+   */
   private initThreeJS(): void {
     // Renderer
     this.renderer = new THREE.WebGLRenderer({canvas: this.canvasRef.nativeElement});
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(this.canvasRef.nativeElement.width, this.canvasRef.nativeElement.height);
 
     // Scene
     this.scene = new THREE.Scene();
@@ -39,17 +42,18 @@ export class AppComponent implements AfterViewInit {
 
     // Cube
     const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+    const material = new THREE.MeshBasicMaterial({color: 0xffffff});
     this.cube = new THREE.Mesh(geometry, material);
     this.scene.add(this.cube);
   }
 
+  /**
+   * Animate the cube and render the scene
+   */
   private animate(): void {
     requestAnimationFrame(() => this.animate());
-
     this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.01;
-
+    this.cube.rotation.z += 0.01;
     this.renderer.render(this.scene, this.camera);
   }
 
