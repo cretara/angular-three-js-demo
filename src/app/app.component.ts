@@ -68,8 +68,11 @@ export class AppComponent implements AfterViewInit {
     const elapsedTime = this.clock.getElapsedTime();
     requestAnimationFrame(this.animate.bind(this));
     // this.cube.position.x = Math.cos(this.delta);
-    this.cube.position.x = Math.cos(elapsedTime);
-    this.cube.position.y = Math.sin(elapsedTime);
+    // this.cube.position.x = Math.cos(elapsedTime);
+    // this.cube.position.y = Math.sin(elapsedTime);
+    this.camera.position.x = Math.cos(elapsedTime);
+    this.camera.position.y = Math.sin(elapsedTime);
+    this.camera.lookAt(this.cube.position);
     // this.camera.rotation.y = this.cube.rotation.y;
     // this.camera.rotation.x = this.cube.rotation.x;
     // this.camera.lookAt(this.cube.position);
