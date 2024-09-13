@@ -41,6 +41,8 @@ export class AppComponent implements AfterViewInit {
     // Renderer
     this.renderer = new THREE.WebGLRenderer({canvas});
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
     // Scene
 
 
@@ -51,6 +53,7 @@ export class AppComponent implements AfterViewInit {
     this.camera.position.x = 2;
     this.camera.position.y = 2;
     this.camera.position.z = 5;
+
     // Cube
 
     const geometry = new THREE.BoxGeometry(1, 1, 2);
